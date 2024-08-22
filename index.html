@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EV Charging Station Finder</title>
+</head>
+<body>
+    <h1>Find and Book Charging Stations</h1>
+    <ul>
+        {% for station in stations %}
+            <li><a href="{{ url_for('station', station_id=station.id) }}">{{ station.name }} - {{ station.location }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

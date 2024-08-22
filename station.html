@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ station.name }}</title>
+</head>
+<body>
+    <h1>{{ station.name }}</h1>
+    <p>{{ station.location }}</p>
+
+    <h2>Slots</h2>
+    <form method="POST" action="{{ url_for('book_slot') }}">
+        <input type="hidden" name="station_id" value="{{ station.id }}">
+        <label for="user_name">Your Name:</label>
+        <input type="text" name="user_name" required>
+        <ul>
+            {% for slot in station.slots %}
+                <li>
+                    Slot {{ slot.id }} - {{ 'Available' if slot.is_available else 'Booked' }}
+                    {% if slot.is_available %}
+                        <button type="submit" name="slot_id" value="{{ slot.id }}">Book Slot</button>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </form>
+</body>
+</html>
